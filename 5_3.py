@@ -11,7 +11,12 @@ class BaseContact:
         return f"Wybieram numer {self.phone_private} i dzwonię do {self.first_name} {self.last_name}"
     @property
     def label_length(self):
-        return len(self.first_name) + len(self.last_name)
+        return self._label_length
+    @label_length.setter
+    def label_length(self,value):
+        value=len(self.first_name)+len(self.last_name)
+        self._label_length=value
+
 
 class BusinessContact(BaseContact):
     def __init__(self, company, position, phone_company, *args, **kwargs):
@@ -25,7 +30,11 @@ class BusinessContact(BaseContact):
         return f"Wybieram numer {self.phone_company} i dzwonię do {self.first_name} {self.last_name}"
     @property
     def label_length(self):
-        return len(self.first_name) + len(self.last_name)
+        return self._label_length
+    @label_length.setter
+    def label_length(self,value):
+        value=len(self.first_name)+len(self.last_name)
+        self._label_length=value
 
 
 BC1=BusinessContact(first_name="Dean", last_name="Gonzalez", phone_private="+48123123123",email_address="Dean.Gonzalez@M-M.com", company="Martin-Martin", position="Engineer", phone_company="+48987987987")
@@ -35,5 +44,5 @@ BC4=BusinessContact(first_name="Andrew", last_name="Nguyen", phone_private="+484
 BC5=BusinessContact(first_name="Elizabeth", last_name="Jones", phone_private="+48567567567", email_address="E.Jones@C-H-S.com", company="Campbell, Holland and Smith", position="Designer, multimedia", phone_company="+48543543543")
 
 BCs=[BC1, BC2, BC3, BC4, BC5]
-print(BC1.label_length())
 
+print(BC1.label_length)
